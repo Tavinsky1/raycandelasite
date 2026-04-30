@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAY CANDELA — Cumbia · Salsa · Berlin</title>
+  <meta name="description" content="Ray Candela — Cumbia and Salsa band based in Berlin. Booking and festival enquiries.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       RAY CANDELA — LATIN BRUTALISM
+       Warm · Alive · Berlin · En Vivo
+       ============================================= */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Warm near-black — not cold void */
+      --bg:        #0C0603;
+      --surface:   #150A06;
+      --surface-2: #1C0F09;
+
+      /* Warm white */
+      --fg:        #F7F0E8;
+      --muted:     #9A8070;
+
+      /* HOT accent palette */
+      --red:       #FF2D20;   /* Salsa red — primary CTA */
+      --yellow:    #FFD600;   /* Cumbia gold — highlights */
+      --green:     #D4FF00;   /* Acid green — brutalist link */
+      --teal:      #00E5C0;   /* Tropical — sparingly */
+      --orange:    #FF6B1A;   /* Warm orange — secondary accent */
+
+      --border:    #2A1508;
+      --border-light: #3D2015;
+
+      --font-display: 'Syne', ui-sans-serif, sans-serif;
+      --font-body:    'Space Grotesk', ui-sans-serif, sans-serif;
+
+      --text-hero: clamp(5.5rem, 15vw, 15rem);
+      --space-2:  0.5rem;
+      --space-4:  1rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+      --radius-md:   8px;
+      --radius-full: 9999px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--yellow); }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+    @media (min-width: 768px) { .container { padding: 0 var(--space-12); } }
+
+    .section { padding: var(--space-24) 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+    @media (min-width: 1024px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; gap: var(--space-16); }
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 800;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+    p { font-size: 1.1rem; line-height: 1.7; color: var(--muted); }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* Stroke / outline text */
+    .stroke {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(247, 240, 232, 0.2);
+    }
+    .stroke-red {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--red);
+    }
+    .stroke-yellow {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--yellow);
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .btn-pill { border-radius: var(--radius-full); padding: 0.7rem 1.8rem; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-red:hover { background: #FF4A40; color: #fff; }
+    .btn-yellow { background: var(--yellow); color: #0C0603; }
+    .btn-yellow:hover { background: #FFE040; color: #0C0603; }
+    .btn-outline { background: transparent; color: var(--fg); border: 1.5px solid var(--border-light); }
+    .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+    /* Inverted buttons (for red-bg sections) */
+    .btn-dark { background: #0C0603; color: var(--fg); }
+    .btn-dark:hover { background: #1A0A05; color: var(--yellow); }
+    .btn-white-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+    .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); color: #fff; }
+
+    /* ─── NAVIGATION ─── */
+    .nav-capsule {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.4rem;
+      border-radius: var(--radius-full);
+      background: rgba(12,6,3,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-light);
+      white-space: nowrap;
+    }
+    .nav-logo {
+      padding: 0.4rem 1rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: var(--fg);
+    }
+    .nav-logo .dot { color: var(--red); }
+    .nav-divider { width: 1px; height: 1rem; background: var(--border-light); margin: 0 0.2rem; }
+    .nav-link {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-radius: var(--radius-full);
+      transition: all 0.2s ease;
+      display: none;
+    }
+    @media (min-width: 640px) { .nav-link { display: block; } }
+    .nav-link:hover { color: var(--fg); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      padding: 0.45rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: #fff;
+      border-radius: var(--radius-full);
+      transition: all 0.2s ease;
+    }
+    .nav-cta:hover { background: #FF4A40; color: #fff; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: var(--space-24);
+      padding-top: 8rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Animated color orbs — the "alive" feeling */
+    .hero-orbs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(255,45,32,0.22) 0%, transparent 70%);
+      top: -15%; right: -10%;
+      animation-delay: 0s;
+      animation-duration: 14s;
+    }
+    .orb-2 {
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(255,214,0,0.14) 0%, transparent 70%);
+      bottom: 10%; left: -5%;
+      animation-delay: -5s;
+      animation-duration: 18s;
+    }
+    .orb-3 {
+      width: 30vw; height: 30vw;
+      background: radial-gradient(circle, rgba(255,107,26,0.12) 0%, transparent 70%);
+      top: 40%; left: 30%;
+      animation-delay: -8s;
+      animation-duration: 20s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(3%, 5%) scale(1.06); }
+      66%       { transform: translate(-3%, -3%) scale(0.96); }
+    }
+
+    /* Noise texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Vertical decorative side text */
+    .hero-side-text {
+      position: absolute;
+      right: var(--space-6);
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255, 45, 32, 0.4);
+      white-space: nowrap;
+      z-index: 2;
+    }
+    @media (min-width: 1024px) { .hero-side-text { right: var(--space-12); } }
+
+    /* Diamond grid background */
+    .hero-diamonds {
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.05;
+    }
+
+    .hero .container { position: relative; z-index: 2; }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .hero-year {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .hero-year-line {
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--red);
+      opacity: 0.5;
+    }
+    .hero-city {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 800;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--fg);
+      margin-bottom: var(--space-8);
+    }
+
+    .hero-title .word-candela {
+      display: block;
+      color: var(--red);
+      /* Red fill — the money word */
+    }
+    .hero-title .word-ray {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--fg);
+    }
+
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: clamp(0.8rem, 1.4vw, 1rem);
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-10);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-tagline .sep { color: var(--yellow); }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-16);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: var(--space-12);
+      flex-wrap: wrap;
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--border-light);
+      align-items: flex-end;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .hero-stat-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    .stat-divider {
+      width: 1px;
+      height: 3.5rem;
+      background: var(--border-light);
+      align-self: flex-end;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee {
+      overflow: hidden;
+      padding: 0.9rem 0;
+      white-space: nowrap;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .marquee--red {
+      background: var(--red);
+      border-color: var(--red);
+    }
+    .marquee--yellow {
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+    .marquee-track {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      animation: marquee 18s linear infinite;
+    }
+    .marquee--reverse .marquee-track { animation-direction: reverse; }
+    .marquee--slow .marquee-track { animation-duration: 30s; }
+    .marquee--fast .marquee-track { animation-duration: 12s; }
+
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .marquee--red .marquee-track span { color: rgba(255,255,255,0.85); }
+    .marquee--yellow .marquee-track span { color: rgba(12,6,3,0.85); }
+
+    .marquee-track .dot { color: var(--red); font-size: 0.45rem; }
+    .marquee-track .dot-y { color: var(--yellow); font-size: 0.45rem; }
+    .marquee--red .marquee-track .dot { color: rgba(255,255,255,0.5); }
+    .marquee--yellow .marquee-track .dot { color: rgba(12,6,3,0.4); }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── BAND SECTION ─── */
+    .band-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .band-photo-wrap {
+      position: relative;
+    }
+    .band-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface-2);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .band-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(1.1) contrast(1.05);
+    }
+    .band-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1rem; color: var(--border-light);
+    }
+    .band-photo-placeholder svg { width: 3rem; opacity: 0.25; }
+    .band-photo-placeholder p { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--border-light); }
+
+    /* Accent corner brackets */
+    .band-photo::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 2.5rem; height: 2.5rem;
+      border-top: 2px solid var(--red);
+      border-left: 2px solid var(--red);
+      z-index: 3;
+      border-radius: 0 0 0 0;
+    }
+    .band-photo::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 2.5rem; height: 2.5rem;
+      border-bottom: 2px solid var(--yellow);
+      border-right: 2px solid var(--yellow);
+      z-index: 3;
+    }
+
+    /* Floating label on photo */
+    .band-photo-label {
+      position: absolute;
+      bottom: var(--space-6);
+      left: var(--space-6);
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-full);
+      z-index: 4;
+    }
+
+    .band-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-8);
+    }
+
+    .genre-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .genre-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid;
+    }
+    .genre-tag--red    { border-color: rgba(255,45,32,0.5); color: var(--red); }
+    .genre-tag--yellow { border-color: rgba(255,214,0,0.5); color: var(--yellow); }
+    .genre-tag--muted  { border-color: var(--border-light); color: var(--muted); }
+
+    /* ─── MUSIC ─── */
+    .music-section { background: var(--bg); }
+
+    .platform-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-top: var(--space-8);
+    }
+    .platform-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .platform-link:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: rgba(255,214,0,0.04);
+      padding-left: 1.6rem;
+    }
+    .platform-link.soon { opacity: 0.35; cursor: default; pointer-events: none; }
+    .platform-link .arrow { transition: transform 0.2s ease; font-size: 1.1rem; }
+    .platform-link:hover .arrow { transform: translateX(4px); }
+
+    .music-placeholder {
+      margin-top: var(--space-8);
+      aspect-ratio: 16/6;
+      background: var(--surface);
+      border: 1.5px dashed var(--border-light);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .music-placeholder p { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--border-light); }
+
+    /* ─── SHOWS ─── */
+    .shows-section { background: var(--surface); }
+
+    .show-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: var(--space-6);
+      align-items: center;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+    .show-item:hover { padding-left: var(--space-4); }
+    .show-item:hover .show-num { color: var(--red); }
+    @media (max-width: 640px) {
+      .show-item { grid-template-columns: 60px 1fr; }
+      .show-ticket { display: none; }
+    }
+    .show-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      transition: color 0.2s;
+    }
+    .show-month {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .show-venue {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      color: var(--fg);
+    }
+    .show-city {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .no-shows {
+      padding: var(--space-12) 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery-section { background: var(--bg); overflow: hidden; }
+
+    .gallery-strip {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      overflow-y: hidden;
+      cursor: grab;
+      padding-bottom: var(--space-4);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      margin-top: var(--space-8);
+    }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gallery-strip.grabbing { cursor: grabbing; }
+
+    .gallery-item {
+      flex: 0 0 auto;
+      width: clamp(220px, 32vw, 400px);
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      position: relative;
+    }
+    .gallery-item.wide {
+      width: clamp(300px, 48vw, 560px);
+      aspect-ratio: 4/3;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      filter: saturate(1.1);
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); filter: saturate(1.3); }
+
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-ph-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    }
+    .gallery-ph-inner .diamond {
+      width: 8px; height: 8px;
+      transform: rotate(45deg);
+    }
+    .gallery-ph-inner span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--border-light); }
+
+    /* Corner label */
+    .gallery-item::after {
+      content: attr(data-n);
+      position: absolute;
+      top: 0.75rem; left: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(247,240,232,0.45);
+      pointer-events: none;
+    }
+
+    /* ─── CONTACT / BOOKING — HOT RED SECTION ─── */
+    .contact-section {
+      background: var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle dot pattern on red section */
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Big decorative letter background */
+    .contact-bg-word {
+      position: absolute;
+      bottom: -5%;
+      right: -2%;
+      font-family: var(--font-display);
+      font-size: clamp(12rem, 22vw, 22rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.05);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .contact-section .container { position: relative; z-index: 1; }
+
+    .contact-section .section-label { color: rgba(255,255,255,0.6); }
+    .contact-section .section-label::before { background: rgba(255,255,255,0.5); }
+
+    .contact-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 800;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: var(--space-6);
+    }
+    .contact-headline .line-stroke {
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,0.5);
+    }
+
+    /* Form on red bg */
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: var(--space-4); }
+    .form-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(0,0,0,0.25);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      transition: border-color 0.2s ease;
+      outline: none;
+      appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.3); }
+    .form-textarea { resize: vertical; min-height: 130px; }
+    .form-select option { background: #3d0a02; color: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+    .form-note { font-size: 0.72rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin-top: var(--space-4); }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-12);
+      color: #fff;
+    }
+    .contact-right p { color: rgba(255,255,255,0.75); }
+
+    .booking-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+    }
+    .booking-badge h3 {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+    .booking-badge p { font-size: 0.9rem; }
+
+    .social-block {
+      display: flex;
+      flex-direction: column;
+    }
+    .social-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-4);
+    }
+    .social-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s ease;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+    .social-row:hover { color: #fff; padding-left: 0.4rem; }
+    .social-row .platform-name {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .social-row .handle { font-weight: 600; }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      padding: var(--space-8);
+      background: rgba(0,0,0,0.25);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-md);
+      margin-top: var(--space-6);
+    }
+    .form-success h3 {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: var(--space-4);
+    }
+    .form-success p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border-light);
+      padding: var(--space-16) 0 var(--space-8);
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 5rem);
+      font-weight: 800;
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .footer-logo .red { color: var(--red); }
+    .footer-logo .stroke { color: transparent; -webkit-text-stroke: 1.5px rgba(247,240,232,0.2); }
+    .footer-bottom {
+      margin-top: var(--space-12);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .footer-bottom p {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--border-light);
+    }
+    .footer-bottom a { color: var(--border-light); }
+    .footer-bottom a:hover { color: var(--yellow); }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+    @media (min-width: 1024px) { .footer-nav { align-items: flex-end; } }
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      transition: color 0.2s ease;
+      letter-spacing: 0.03em;
+    }
+    .footer-nav a:hover { color: var(--yellow); }
+
+    /* ─── FADE IN ─── */
+    .fi {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fi.show { opacity: 1; transform: translateY(0); }
+    .fi-d1 { transition-delay: 0.1s; }
+    .fi-d2 { transition-delay: 0.22s; }
+    .fi-d3 { transition-delay: 0.38s; }
+    .fi-d4 { transition-delay: 0.52s; }
+
+    /* ─── DIVIDER LINE ─── */
+    .divider { height: 1px; background: var(--border-light); }
+
+    /* ─── RESPONSIVE TWEAKS ─── */
+    @media (max-width: 400px) {
+      .nav-capsule { padding: 0.3rem; }
+      .nav-logo { font-size: 0.75rem; padding: 0.3rem 0.75rem; }
+      .nav-cta { padding: 0.35rem 0.9rem; font-size: 0.7rem; }
+    }
+
+    /* ─── EXTRA: pulsing red dot accent ─── */
+    .pulse-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulseDot 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+
+    /* ─── ACCENT NUMBER decoration ─── */
+    .big-num {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 8rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border-light);
+      user-select: none;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       NAV
+  ══════════════════════════════ -->
+  <nav class="nav-capsule" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav-logo">RAY <span class="dot">✦</span> CANDELA</a>
+    <div class="nav-divider"></div>
+    <a href="#band"    class="nav-link">La Banda</a>
+    <a href="#shows"   class="nav-link">Shows</a>
+    <a href="#gallery" class="nav-link">Gallery</a>
+    <a href="#contact" class="nav-cta">Book Us</a>
+  </nav>
+
+
+  <!-- ══════════════════════════════
+       01 — HERO
+  ══════════════════════════════ -->
+  <section class="hero" id="home" aria-label="Hero">
+
+    <!-- Animated color orbs -->
+    <div class="hero-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Diamond grid -->
+    <svg class="hero-diamonds" viewBox="0 0 400 900" preserveAspectRatio="xMaxYMid slice" fill="none" aria-hidden="true">
+      <defs>
+        <pattern id="dg" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M25 4 L46 25 L25 46 L4 25 Z" stroke="#F7F0E8" stroke-width="0.6" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="400" height="900" fill="url(#dg)"/>
+      <path d="M340 60 L380 100 L340 140 L300 100 Z" stroke="#FF2D20" stroke-width="1.2" fill="none"/>
+      <path d="M360 220 L395 255 L360 290 L325 255 Z" stroke="#FFD600" stroke-width="1" fill="none" opacity="0.7"/>
+      <path d="M310 370 L350 410 L310 450 L270 410 Z" stroke="#FF2D20" stroke-width="0.8" fill="none" opacity="0.5"/>
+    </svg>
+
+    <!-- Vertical side text -->
+    <span class="hero-side-text" aria-hidden="true">CUMBIA · SALSA · BERLIN · EN VIVO</span>
+
+    <div class="container">
+      <div class="hero-eyebrow fi">
+        <span class="hero-year">EST. 2020</span>
+        <span class="hero-year-line"></span>
+        <span class="hero-city">Berlin, Germany</span>
+      </div>
+
+      <h1 class="hero-title fi fi-d1">
+        <span class="word-ray">RAY</span>
+        <span class="word-candela">CANDELA</span>
+      </h1>
+
+      <p class="hero-tagline fi fi-d2">
+        Cumbia
+        <span class="sep">✦</span>
+        Salsa
+        <span class="sep">✦</span>
+        Berlin
+      </p>
+
+      <div class="hero-cta fi fi-d3">
+        <a href="#shows"   class="btn btn-red btn-pill">Upcoming Shows ↓</a>
+        <a href="#contact" class="btn btn-outline btn-pill">Book For Your Festival →</a>
+      </div>
+
+      <div class="hero-stats fi fi-d4">
+        <div>
+          <div class="hero-stat-num" style="color: var(--red);">2</div>
+          <div class="hero-stat-label">Genres</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div>
+          <div class="hero-stat-num" style="color: var(--yellow);">BLN</div>
+          <div class="hero-stat-label">Based In</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div>
+          <div class="hero-stat-num" style="color: var(--fg);">∞</div>
+          <div class="hero-stat-label">Energy</div>
+        </div>
+        <div class="stat-divider" style="display:none;"></div>
+        <div style="margin-left: auto;">
+          <div class="pulse-dot" style="margin-bottom: 0.4rem;"></div>
+          <div class="hero-stat-label">Available to Book</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOT RED MARQUEE -->
+  <div class="marquee marquee--red marquee--fast" aria-hidden="true">
+    <div class="marquee-track">
+      <span>CUMBIA</span><span class="dot">✦</span>
+      <span>SALSA</span><span class="dot">✦</span>
+      <span>BERLIN</span><span class="dot">✦</span>
+      <span>EN VIVO</span><span class="dot">✦</span>
+      <span>RAY CANDELA</span><span class="dot">✦</span>
+      <span>LATIN RHYTHM</span><span class="dot">✦</span>
+      <span>FESTIVAL READY</span><span class="dot">✦</span>
+      <span>BAILA BAILA</span><span class="dot">✦</span>
+      <span>CUMBIA</span><span class="dot">✦</span>
+      <span>SALSA</span><span class="dot">✦</span>
+      <span>BERLIN</span><span class="dot">✦</span>
+      <span>EN VIVO</span><span class="dot">✦</span>
+      <span>RAY CANDELA</span><span class="dot">✦</span>
+      <span>LATIN RHYTHM</span><span class="dot">✦</span>
+      <span>FESTIVAL READY</span><span class="dot">✦</span>
+      <span>BAILA BAILA</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       02 — LA BANDA
+  ══════════════════════════════ -->
+  <section class="section band-section" id="band" aria-labelledby="band-h">
+    <div class="container">
+      <div class="grid-2">
+
+        <!-- Photo column -->
+        <div class="band-photo-wrap fi">
+          <div class="band-photo">
+            <!--
+              ADD YOUR PHOTO HERE:
+              <img src="pictures/hero.jpg" alt="Ray Candela band photo">
+              Remove the placeholder block below when you do.
+            -->
+            <div class="band-photo-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="9" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M3 18 L8 13 L12 17 L16 12 L21 18" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+              <p>Your band photo here</p>
+              <p style="font-size:0.5rem; margin-top:0.25rem;">pictures/hero.jpg</p>
+            </div>
+            <span class="band-photo-label">Ray Candela · Berlin</span>
+          </div>
+        </div>
+
+        <!-- Text column -->
+        <div class="band-text">
+          <p class="section-label fi">02 — La Banda</p>
+
+          <h2 class="fi fi-d1" id="band-h">
+            RITMO<br>
+            <span class="stroke-yellow">EN EL</span><br>
+            CORAZÓN
+          </h2>
+
+          <p class="fi fi-d2">
+            Ray Candela is a cumbia and salsa band born in Berlin —
+            where the grit of the city collides head-on with the heat
+            of Latin American rhythm. We bring the dance floor alive
+            whether it's a packed club in Neukölln or a sun-drenched
+            festival stage.
+          </p>
+
+          <p class="fi fi-d2">
+            Our sound draws from traditional Colombian cumbia and
+            Caribbean salsa, reinterpreted through a Berlin lens:
+            raw, direct, and impossible to stand still to.
+          </p>
+
+          <div class="genre-tags fi fi-d3">
+            <span class="genre-tag genre-tag--red">Cumbia</span>
+            <span class="genre-tag genre-tag--yellow">Salsa</span>
+            <span class="genre-tag genre-tag--muted">Berlin-Based</span>
+            <span class="genre-tag genre-tag--red">Festival Ready</span>
+            <span class="genre-tag genre-tag--muted">Live Band</span>
+          </div>
+
+          <a href="#contact" class="btn btn-red btn-pill fi fi-d4" style="align-self: flex-start;">Book the Band →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLD MARQUEE reversed -->
+  <div class="marquee marquee--yellow marquee--reverse marquee--slow" aria-hidden="true">
+    <div class="marquee-track">
+      <span>KONZERTAGENTUR</span><span class="dot">◆</span>
+      <span>FESTIVAL BOOKING</span><span class="dot">◆</span>
+      <span>CUMBIA COLOMBIANA</span><span class="dot">◆</span>
+      <span>SALSA CARIBEÑA</span><span class="dot">◆</span>
+      <span>BERLIN KIEZMUSIK</span><span class="dot">◆</span>
+      <span>VOLLGAS EN VIVO</span><span class="dot">◆</span>
+      <span>KONZERTAGENTUR</span><span class="dot">◆</span>
+      <span>FESTIVAL BOOKING</span><span class="dot">◆</span>
+      <span>CUMBIA COLOMBIANA</span><span class="dot">◆</span>
+      <span>SALSA CARIBEÑA</span><span class="dot">◆</span>
+      <span>BERLIN KIEZMUSIK</span><span class="dot">◆</span>
+      <span>VOLLGAS EN VIVO</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       03 — MÚSICA
+  ══════════════════════════════ -->
+  <section class="section music-section" id="music" aria-labelledby="music-h">
+    <div class="container">
+      <div class="grid-2">
+
+        <div>
+          <p class="section-label fi">03 — Música</p>
+          <h2 class="fi fi-d1" id="music-h">
+            LISTEN<br>
+            <span class="stroke">TO THE</span><br>
+            SOUND
+          </h2>
+          <p class="fi fi-d2" style="margin-top: var(--space-6); max-width: 380px;">
+            Recordings coming soon. Follow us on social to hear
+            clips and stay updated when music drops.
+          </p>
+          <!-- When you have a Spotify/SC embed, drop it here:
+          <div style="margin-top: 2rem;">
+            <iframe ...></iframe>
+          </div>
+          -->
+        </div>
+
+        <div class="fi fi-d2">
+          <div class="platform-links">
+            <a href="#" class="platform-link soon">
+              <span>Spotify</span>
+              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
+            </a>
+            <a href="#" class="platform-link soon">
+              <span>SoundCloud</span>
+              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
+            </a>
+            <a href="#" class="platform-link soon">
+              <span>YouTube</span>
+              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
+            </a>
+            <a href="#" class="platform-link soon">
+              <span>Apple Music</span>
+              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
+            </a>
+          </div>
+
+          <div class="music-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="opacity:0.2;">
+              <circle cx="12" cy="12" r="10" stroke="#F7F0E8" stroke-width="1.5"/>
+              <polygon points="10,8 16,12 10,16" fill="#F7F0E8" opacity="0.6"/>
+            </svg>
+            <p>Music embed coming soon</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       04 — CONCIERTOS
+  ══════════════════════════════ -->
+  <section class="section shows-section" id="shows" aria-labelledby="shows-h">
+    <div class="container">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:var(--space-6);">
+        <div>
+          <p class="section-label fi">04 — Conciertos</p>
+          <h2 class="fi fi-d1" id="shows-h">
+            UPCOMING<br>
+            <span class="stroke-red">SHOWS</span>
+          </h2>
+        </div>
+        <a href="#contact" class="btn btn-outline btn-pill fi" style="align-self:flex-end;">Invite Us To Play →</a>
+      </div>
+
+      <div class="shows-list" style="margin-top: var(--space-8);">
+
+        <!-- ──────────────────────────────────────────
+             UNCOMMENT & FILL when you have dates:
+
+        <div class="show-item fi">
+          <div>
+            <div class="show-num">14</div>
+            <div class="show-month">Jun 2025</div>
+          </div>
+          <div>
+            <div class="show-venue">Kantine Am Berghain</div>
+            <div class="show-city">Berlin, Germany · 21:00</div>
+          </div>
+          <a href="#" class="btn btn-outline btn-pill show-ticket" style="font-size:0.75rem;">Tickets →</a>
+        </div>
+        ────────────────────────────────────────── -->
+
+        <div class="no-shows fi">
+          <p style="color: var(--muted); font-size:0.85rem; letter-spacing:0.05em;">
+            No shows announced yet — follow us on Instagram for updates.
+          </p>
+          <a href="#contact" class="btn btn-red btn-pill" style="margin-top: var(--space-6); font-size:0.82rem;">
+            Booking Enquiries →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark ticker -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>FESTIVAL</span><span class="dot">✦</span>
+      <span>CLUB SHOW</span><span class="dot-y">✦</span>
+      <span>PRIVATE EVENT</span><span class="dot">✦</span>
+      <span>KULTURVERANSTALTUNG</span><span class="dot-y">✦</span>
+      <span>SOMMERFEST</span><span class="dot">✦</span>
+      <span>KONZERT</span><span class="dot-y">✦</span>
+      <span>FESTIVAL</span><span class="dot">✦</span>
+      <span>CLUB SHOW</span><span class="dot-y">✦</span>
+      <span>PRIVATE EVENT</span><span class="dot">✦</span>
+      <span>KULTURVERANSTALTUNG</span><span class="dot-y">✦</span>
+      <span>SOMMERFEST</span><span class="dot">✦</span>
+      <span>KONZERT</span><span class="dot-y">✦</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════
+       05 — GALERÍA
+  ══════════════════════════════ -->
+  <section class="section gallery-section" id="gallery" aria-labelledby="gallery-h">
+    <div class="container">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:var(--space-6);">
+        <div>
+          <p class="section-label fi">05 — Galería</p>
+          <h2 class="fi fi-d1" id="gallery-h">
+            EN<br>
+            <span class="stroke">VIVO</span>
+          </h2>
+        </div>
+        <p style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--border-light); align-self:flex-end;" class="fi">← Drag to explore →</p>
+      </div>
+    </div>
+
+    <!-- Drag-to-scroll strip -->
+    <!-- Replace placeholder divs with <img src="pictures/your-photo.jpg" alt="..."> -->
+    <div class="gallery-strip" id="gallery-strip" role="region" aria-label="Photo gallery" tabindex="0">
+
+      <div class="gallery-item" data-n="01" style="margin-left: clamp(1.5rem, 6vw, 6rem);">
+        <!-- <img src="pictures/band-1.jpg" alt="Ray Candela live performance"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-ph-inner">
+            <div class="diamond" style="background: var(--red);"></div>
+            <span>Photo 01</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item wide" data-n="02">
+        <!-- <img src="pictures/band-2.jpg" alt="Ray Candela on stage"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-ph-inner">
+            <div class="diamond" style="background: var(--yellow);"></div>
+            <span>Photo 02</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-n="03">
+        <!-- <img src="pictures/band-3.jpg" alt="Ray Candela band members"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-ph-inner">
+            <div class="diamond" style="background: var(--red);"></div>
+            <span>Photo 03</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item wide" data-n="04">
+        <!-- <img src="pictures/band-4.jpg" alt="Ray Candela audience"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-ph-inner">
+            <div class="diamond" style="background: var(--yellow);"></div>
+            <span>Photo 04</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-n="05" style="margin-right: clamp(1.5rem, 6vw, 6rem);">
+        <!-- <img src="pictures/band-5.jpg" alt="Ray Candela promo shot"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-ph-inner">
+            <div class="diamond" style="background: var(--orange);"></div>
+            <span>Photo 05</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       06 — BOOKING — HOT RED
+  ══════════════════════════════ -->
+  <section class="section contact-section" id="contact" aria-labelledby="contact-h">
+
+    <!-- Big ghost word background -->
+    <div class="contact-bg-word" aria-hidden="true">BAILA</div>
+
+    <div class="container">
+      <div class="grid-2">
+
+        <!-- Left: form -->
+        <div class="fi">
+          <p class="section-label">06 — Booking & Kontakt</p>
+
+          <h2 class="contact-headline" id="contact-h">
+            BOOK<br>
+            <span class="line-stroke">RAY</span><br>
+            CANDELA
+          </h2>
+
+          <form
+            style="margin-top: var(--space-8);"
+            onsubmit="handleSubmit(event)"
+            id="booking-form"
+            aria-label="Booking enquiry form"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Your Name</label>
+                <input class="form-input" type="text" id="name" name="name"
+                  placeholder="Ada Lovelace" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" name="email"
+                  placeholder="booking@festival.de" required autocomplete="email">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="event-type">Event Type</label>
+                <select class="form-select" id="event-type" name="event_type" required>
+                  <option value="" disabled selected>Select type...</option>
+                  <option value="festival">Festival</option>
+                  <option value="club">Club / Venue</option>
+                  <option value="private">Private Event</option>
+                  <option value="corporate">Corporate / Firmenfeier</option>
+                  <option value="outdoor">Open Air</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="event-date">Proposed Date</label>
+                <input class="form-input" type="date" id="event-date" name="event_date">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Tell Us About Your Event</label>
+              <textarea
+                class="form-textarea"
+                id="message"
+                name="message"
+                placeholder="Festival name, location, expected audience, stage size, budget range..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-pill"
+              style="margin-top: var(--space-4); padding: 0.8rem 2.2rem;">
+              Send Enquiry →
+            </button>
+
+            <p class="form-note" style="margin-top: var(--space-6);">
+              We respond within 48 hours. For urgent bookings, reach us directly via Instagram.
+            </p>
+          </form>
+
+          <div class="form-success" id="form-success" role="alert">
+            <h3>✦ Message Sent</h3>
+            <p>We've received your enquiry and will be in touch within 48 hours. ¡Hasta pronto!</p>
+          </div>
+        </div>
+
+        <!-- Right: info -->
+        <div class="contact-right fi fi-d2">
+
+          <div>
+            <p style="font-family: var(--font-display); font-size: clamp(1.8rem,3.5vw,3.5rem); font-weight:800; line-height:0.9; text-transform:uppercase; letter-spacing:-0.03em; color:#fff;">
+              LET'S MAKE<br>
+              <span style="color:transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.35);">THE CROWD</span><br>
+              DANCE.
+            </p>
+            <p style="margin-top: var(--space-6); max-width: 380px;">
+              Based in Berlin, available for festivals, club nights,
+              private events, and cultural programmes across Germany and Europe.
+              Set length: 60–90 minutes. Rider and press kit on request.
+            </p>
+          </div>
+
+          <!-- Festival badge -->
+          <div class="booking-badge" style="display:flex; flex-direction:column;">
+            <h3 style="font-family: var(--font-body);">✦ Festival Bookings 2025–2026</h3>
+            <p style="font-size:0.9rem;">
+              We're actively seeking festival bookings for the upcoming season.
+              All genres of Latin, world music, and Kulturfest stages welcome.
+            </p>
+          </div>
+
+          <!-- Socials -->
+          <div class="social-block">
+            <p class="social-label">Find Us Online</p>
+            <!-- Replace href="#" with real social links -->
+            <a href="#" class="social-row" aria-label="Instagram">
+              <span class="platform-name">Instagram</span>
+              <span class="handle">@raycandela →</span>
+            </a>
+            <a href="#" class="social-row" aria-label="Facebook">
+              <span class="platform-name">Facebook</span>
+              <span class="handle">Ray Candela →</span>
+            </a>
+            <a href="#" class="social-row" aria-label="TikTok">
+              <span class="platform-name">TikTok</span>
+              <span class="handle">@raycandela →</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <div class="footer-logo">
+            <span class="red">RAY</span><br>
+            <span class="stroke">CANDELA</span>
+          </div>
+          <p style="margin-top: var(--space-6); font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">
+            Cumbia · Salsa · Berlin
+          </p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#band">La Banda</a>
+          <a href="#music">Música</a>
+          <a href="#shows">Conciertos</a>
+          <a href="#gallery">Galería</a>
+          <a href="#contact">Booking</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Ray Candela. All rights reserved.</p>
+        <p>Website by <a href="https://inksky.net" target="_blank" rel="noopener noreferrer">Inksky Independent Studios</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════ -->
+  <script>
+    /* ── Smooth scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ── Fade-in on scroll ── */
+    const fiEls = document.querySelectorAll('.fi');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fiEls.forEach(el => io.observe(el));
+
+    /* Fire hero elements immediately on load */
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.hero .fi').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), i * 130);
+      });
+    });
+
+    /* ── Drag gallery ── */
+    const strip = document.getElementById('gallery-strip');
+    let isDown = false, startX, scrollLeft;
+    strip.addEventListener('mousedown', e => {
+      isDown = true;
+      strip.classList.add('grabbing');
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('grabbing'); });
+    strip.addEventListener('mouseup',    () => { isDown = false; strip.classList.remove('grabbing'); });
+    strip.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.5;
+    });
+    let tStart = 0, tScroll = 0;
+    strip.addEventListener('touchstart', e => {
+      tStart = e.touches[0].pageX;
+      tScroll = strip.scrollLeft;
+    }, { passive: true });
+    strip.addEventListener('touchmove', e => {
+      strip.scrollLeft = tScroll - (e.touches[0].pageX - tStart);
+    }, { passive: true });
+    strip.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') strip.scrollBy({ left: 300, behavior: 'smooth' });
+      if (e.key === 'ArrowLeft')  strip.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    /* ── Form ── */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('booking-form');
+      const btn  = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      /*
+        For real emails, change form to:
+          <form action="https://formspree.io/f/YOUR_ID" method="POST">
+        or add data-netlify="true" for Netlify Forms.
+      */
+      setTimeout(() => {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }, 900);
+    }
+  </script>
+
+</body>
+</html>
