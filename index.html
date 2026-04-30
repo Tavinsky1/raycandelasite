@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAY CANDELA — Cumbia · Salsa · Berlin</title>
-  <meta name="description" content="Ray Candela — Cumbia and Salsa band based in Berlin. Booking and festival enquiries.">
+  <title>RAY CANDELA · Cumbia · Salsa · Berlin</title>
+  <meta name="description" content="Ray Candela, a cumbia and salsa band based in Berlin. Booking and festival enquiries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
       --font-display: 'Syne', ui-sans-serif, sans-serif;
       --font-body:    'Space Grotesk', ui-sans-serif, sans-serif;
 
-      --text-hero: clamp(5.5rem, 15vw, 15rem);
+      --text-hero: clamp(4.2rem, 11vw, 12rem);
       --space-2:  0.5rem;
       --space-4:  1rem;
       --space-6:  1.5rem;
@@ -496,7 +496,7 @@
     }
     .band-photo {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 4/3;
       background: var(--surface-2);
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
@@ -506,6 +506,7 @@
     .band-photo img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center 35%;
       filter: saturate(1.1) contrast(1.05);
     }
     .band-photo-placeholder {
@@ -1061,7 +1062,7 @@
 
     <div class="container">
       <div class="hero-eyebrow fi">
-        <span class="hero-year">EST. 2020</span>
+        <span class="hero-year">EST. 2026</span>
         <span class="hero-year-line"></span>
         <span class="hero-city">Berlin, Germany</span>
       </div>
@@ -1086,8 +1087,8 @@
 
       <div class="hero-stats fi fi-d4">
         <div>
-          <div class="hero-stat-num" style="color: var(--red);">2</div>
-          <div class="hero-stat-label">Genres</div>
+          <div class="hero-stat-num" style="color: var(--red);">2026</div>
+          <div class="hero-stat-label">Est.</div>
         </div>
         <div class="stat-divider"></div>
         <div>
@@ -1141,27 +1142,14 @@
         <!-- Photo column -->
         <div class="band-photo-wrap fi">
           <div class="band-photo">
-            <!--
-              ADD YOUR PHOTO HERE:
-              <img src="pictures/hero.jpg" alt="Ray Candela band photo">
-              Remove the placeholder block below when you do.
-            -->
-            <div class="band-photo-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="9" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M3 18 L8 13 L12 17 L16 12 L21 18" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-              <p>Your band photo here</p>
-              <p style="font-size:0.5rem; margin-top:0.25rem;">pictures/hero.jpg</p>
-            </div>
+            <img src="pictures/band-group.jpg" alt="Ray Candela band members together in Berlin" loading="eager">
             <span class="band-photo-label">Ray Candela · Berlin</span>
           </div>
         </div>
 
         <!-- Text column -->
         <div class="band-text">
-          <p class="section-label fi">02 — La Banda</p>
+          <p class="section-label fi">02 · La Banda</p>
 
           <h2 class="fi fi-d1" id="band-h">
             RITMO<br>
@@ -1170,11 +1158,10 @@
           </h2>
 
           <p class="fi fi-d2">
-            Ray Candela is a cumbia and salsa band born in Berlin —
-            where the grit of the city collides head-on with the heat
-            of Latin American rhythm. We bring the dance floor alive
-            whether it's a packed club in Neukölln or a sun-drenched
-            festival stage.
+            Ray Candela is a cumbia and salsa band born in Berlin.
+            The grit of the city collides with the heat of Latin American rhythm.
+            We bring the dance floor alive whether it is a packed club in Neukölln
+            or a sun drenched festival stage.
           </p>
 
           <p class="fi fi-d2">
@@ -1186,7 +1173,7 @@
           <div class="genre-tags fi fi-d3">
             <span class="genre-tag genre-tag--red">Cumbia</span>
             <span class="genre-tag genre-tag--yellow">Salsa</span>
-            <span class="genre-tag genre-tag--muted">Berlin-Based</span>
+            <span class="genre-tag genre-tag--muted">Berlin Based</span>
             <span class="genre-tag genre-tag--red">Festival Ready</span>
             <span class="genre-tag genre-tag--muted">Live Band</span>
           </div>
@@ -1225,7 +1212,7 @@
       <div class="grid-2">
 
         <div>
-          <p class="section-label fi">03 — Música</p>
+          <p class="section-label fi">03 · Música</p>
           <h2 class="fi fi-d1" id="music-h">
             LISTEN<br>
             <span class="stroke">TO THE</span><br>
@@ -1283,7 +1270,7 @@
     <div class="container">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:var(--space-6);">
         <div>
-          <p class="section-label fi">04 — Conciertos</p>
+          <p class="section-label fi">04 · Conciertos</p>
           <h2 class="fi fi-d1" id="shows-h">
             UPCOMING<br>
             <span class="stroke-red">SHOWS</span>
@@ -1312,7 +1299,7 @@
 
         <div class="no-shows fi">
           <p style="color: var(--muted); font-size:0.85rem; letter-spacing:0.05em;">
-            No shows announced yet — follow us on Instagram for updates.
+            No shows announced yet. Follow us on Instagram for updates.
           </p>
           <a href="#contact" class="btn btn-red btn-pill" style="margin-top: var(--space-6); font-size:0.82rem;">
             Booking Enquiries →
@@ -1349,7 +1336,7 @@
     <div class="container">
       <div style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:var(--space-6);">
         <div>
-          <p class="section-label fi">05 — Galería</p>
+          <p class="section-label fi">05 · Galería</p>
           <h2 class="fi fi-d1" id="gallery-h">
             EN<br>
             <span class="stroke">VIVO</span>
@@ -1364,53 +1351,23 @@
     <div class="gallery-strip" id="gallery-strip" role="region" aria-label="Photo gallery" tabindex="0">
 
       <div class="gallery-item" data-n="01" style="margin-left: clamp(1.5rem, 6vw, 6rem);">
-        <!-- <img src="pictures/band-1.jpg" alt="Ray Candela live performance"> -->
-        <div class="gallery-placeholder">
-          <div class="gallery-ph-inner">
-            <div class="diamond" style="background: var(--red);"></div>
-            <span>Photo 01</span>
-          </div>
-        </div>
+        <img src="pictures/gallery-01.jpg" alt="Ray Candela portrait in Berlin" loading="lazy">
       </div>
 
       <div class="gallery-item wide" data-n="02">
-        <!-- <img src="pictures/band-2.jpg" alt="Ray Candela on stage"> -->
-        <div class="gallery-placeholder">
-          <div class="gallery-ph-inner">
-            <div class="diamond" style="background: var(--yellow);"></div>
-            <span>Photo 02</span>
-          </div>
-        </div>
+        <img src="pictures/gallery-04.jpg" alt="Ray Candela trombone player portrait" loading="lazy">
       </div>
 
       <div class="gallery-item" data-n="03">
-        <!-- <img src="pictures/band-3.jpg" alt="Ray Candela band members"> -->
-        <div class="gallery-placeholder">
-          <div class="gallery-ph-inner">
-            <div class="diamond" style="background: var(--red);"></div>
-            <span>Photo 03</span>
-          </div>
-        </div>
+        <img src="pictures/gallery-02.jpg" alt="Ray Candela percussion portrait" loading="lazy">
       </div>
 
       <div class="gallery-item wide" data-n="04">
-        <!-- <img src="pictures/band-4.jpg" alt="Ray Candela audience"> -->
-        <div class="gallery-placeholder">
-          <div class="gallery-ph-inner">
-            <div class="diamond" style="background: var(--yellow);"></div>
-            <span>Photo 04</span>
-          </div>
-        </div>
+        <img src="pictures/gallery-05.jpg" alt="Ray Candela full band group portrait" loading="lazy">
       </div>
 
       <div class="gallery-item" data-n="05" style="margin-right: clamp(1.5rem, 6vw, 6rem);">
-        <!-- <img src="pictures/band-5.jpg" alt="Ray Candela promo shot"> -->
-        <div class="gallery-placeholder">
-          <div class="gallery-ph-inner">
-            <div class="diamond" style="background: var(--orange);"></div>
-            <span>Photo 05</span>
-          </div>
-        </div>
+        <img src="pictures/gallery-03.jpg" alt="Ray Candela bass player portrait" loading="lazy">
       </div>
 
     </div>
@@ -1430,7 +1387,7 @@
 
         <!-- Left: form -->
         <div class="fi">
-          <p class="section-label">06 — Booking & Kontakt</p>
+          <p class="section-label">06 · Booking & Kontakt</p>
 
           <h2 class="contact-headline" id="contact-h">
             BOOK<br>
@@ -1515,13 +1472,13 @@
             <p style="margin-top: var(--space-6); max-width: 380px;">
               Based in Berlin, available for festivals, club nights,
               private events, and cultural programmes across Germany and Europe.
-              Set length: 60–90 minutes. Rider and press kit on request.
+              Set length: 60 to 90 minutes. Rider and press kit on request.
             </p>
           </div>
 
           <!-- Festival badge -->
           <div class="booking-badge" style="display:flex; flex-direction:column;">
-            <h3 style="font-family: var(--font-body);">✦ Festival Bookings 2025–2026</h3>
+            <h3 style="font-family: var(--font-body);">✦ Festival Bookings 2025 / 2026</h3>
             <p style="font-size:0.9rem;">
               We're actively seeking festival bookings for the upcoming season.
               All genres of Latin, world music, and Kulturfest stages welcome.
@@ -1577,7 +1534,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2025 Ray Candela. All rights reserved.</p>
+        <p>© 2026 Ray Candela. All rights reserved.</p>
         <p>Website by <a href="https://inksky.net" target="_blank" rel="noopener noreferrer">Inksky Independent Studios</a></p>
       </div>
     </div>
