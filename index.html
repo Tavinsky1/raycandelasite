@@ -1015,9 +1015,570 @@
       pointer-events: none;
     }
 
+    /* ─── GALLERY GRID (site.js driven) ─── */
+    .gallery-grid {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      overflow-y: hidden;
+      cursor: grab;
+      padding-bottom: var(--space-4);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      margin-top: var(--space-8);
+    }
+    .gallery-grid::-webkit-scrollbar { display: none; }
+    .gallery-grid.grabbing { cursor: grabbing; }
+
+    .gallery-card {
+      flex: 0 0 auto;
+      width: clamp(220px, 30vw, 380px);
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      position: relative;
+    }
+    .gallery-card--wide {
+      width: clamp(300px, 46vw, 540px);
+      aspect-ratio: 4/3;
+    }
+    .gallery-card__image {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      filter: saturate(1.1);
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+    .gallery-card:hover .gallery-card__image { transform: scale(1.04); filter: saturate(1.3); }
+    .gallery-card:first-child { margin-left: clamp(1.5rem, 6vw, 6rem); }
+    .gallery-card:last-child  { margin-right: clamp(1.5rem, 6vw, 6rem); }
+
+    .gallery-card__index {
+      position: absolute;
+      top: 0.75rem; left: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(247,240,232,0.45);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ─── SHOW CARDS ─── */
+    .shows-board {
+      margin-top: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .show-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-6);
+      align-items: center;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border-light);
+      transition: padding-left 0.2s ease;
+    }
+    .show-card:hover { padding-left: var(--space-4); }
+    .show-card--empty {
+      grid-template-columns: 1fr;
+      padding: var(--space-12) 0;
+      border-top: 1px solid var(--border-light);
+    }
+    .show-card--empty p { font-size: 0.9rem; }
+    .show-card__date {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .show-card__day {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+    }
+    .show-card:hover .show-card__day { color: var(--red); }
+    .show-card__month-group { display: flex; flex-direction: column; gap: 0; }
+    .show-card__month {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .show-card__year { font-size: 0.55rem; color: var(--border-light); letter-spacing: 0.1em; }
+    .show-card__venue {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      color: var(--fg);
+    }
+    .show-card__city {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .show-card__ticket { font-size: 0.75rem; }
+    .show-card__ticket-note { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+    @media (max-width: 640px) {
+      .show-card { grid-template-columns: auto 1fr; }
+      .show-card__ticket, .show-card__ticket-note { display: none; }
+    }
+
+    /* ─── SOCIAL ROW (site.js driven) ─── */
+    .social-row--off { opacity: 0.35; pointer-events: none; }
+
+    /* ─── ADMIN TOGGLE BUTTON ─── */
+    .admin-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 300;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-light);
+      background: rgba(12,6,3,0.92);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: var(--muted);
+    }
+    .admin-toggle:hover { border-color: var(--red); color: var(--red); }
+    .admin-toggle svg { width: 16px; height: 16px; }
+
+    /* ─── ADMIN PANEL ─── */
+    .admin-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
+    .admin-panel[hidden] { display: none; }
+
+    .admin-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .admin-panel.is-open .admin-backdrop { opacity: 1; }
+
+    .admin-shell {
+      position: relative;
+      z-index: 1;
+      width: min(480px, 100vw);
+      height: 100%;
+      background: var(--surface);
+      border-left: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.22s ease;
+      overflow: hidden;
+    }
+    .admin-panel.is-open .admin-shell { transform: translateX(0); }
+
+    .admin-header {
+      padding: var(--space-6) var(--space-8);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .admin-header-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .admin-header-title .red { color: var(--red); }
+
+    .admin-close {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: all 0.15s ease;
+    }
+    .admin-close:hover { border-color: var(--red); color: var(--red); }
+
+    .admin-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-8);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-light) transparent;
+    }
+
+    .admin-status {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: rgba(255,214,0,0.08);
+      border: 1px solid transparent;
+      display: none;
+      margin-bottom: var(--space-4);
+    }
+    #admin-status:not(:empty) { display: block; }
+    .admin-status[data-tone="success"] { background: rgba(212,255,0,0.07); border-color: rgba(212,255,0,0.2); color: #D4FF00; }
+    .admin-status[data-tone="error"]   { background: rgba(255,45,32,0.1); border-color: rgba(255,45,32,0.3); color: var(--red); }
+
+    /* Login screen */
+    .admin-lock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-6);
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+      height: 100%;
+    }
+    .admin-lock-icon {
+      font-size: 2.5rem;
+      opacity: 0.4;
+    }
+    .admin-lock h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .admin-lock form { width: 100%; display: flex; flex-direction: column; gap: var(--space-4); }
+    .admin-field {
+      background: var(--surface-2);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.65rem 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .admin-field::placeholder { color: var(--muted); }
+    .admin-field:focus { border-color: var(--yellow); }
+
+    /* Admin sections */
+    .admin-section { margin-bottom: var(--space-8); }
+    .admin-section-title {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: var(--space-6);
+    }
+
+    .admin-form { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .admin-form-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .admin-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .admin-form-hint { font-size: 0.65rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.05em; }
+    textarea.admin-field { resize: vertical; min-height: 80px; }
+
+    /* Admin items list */
+    .admin-items { display: flex; flex-direction: column; gap: 0.5rem; margin-top: var(--space-4); }
+    .admin-item {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: var(--space-4);
+      align-items: center;
+      padding: 0.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+    }
+    .admin-item img { width: 52px; height: 52px; object-fit: cover; border-radius: 4px; }
+    .admin-item--text { grid-template-columns: 1fr auto; }
+    .admin-item__meta { display: flex; flex-direction: column; gap: 0.2rem; }
+    .admin-item__meta strong { font-size: 0.75rem; font-weight: 700; color: var(--fg); }
+    .admin-item__meta span { font-size: 0.65rem; color: var(--muted); word-break: break-all; }
+    .admin-remove {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,45,32,0.4);
+      background: transparent;
+      color: var(--red);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .admin-remove:hover { background: rgba(255,45,32,0.1); }
+    .admin-empty { font-size: 0.72rem; color: var(--muted); font-style: italic; }
+
+    .admin-footer {
+      padding: var(--space-6) var(--space-8);
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      gap: var(--space-4);
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .admin-count {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    .has-custom-cursor, .has-custom-cursor * { cursor: none !important; }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 9999;
+      pointer-events: none;
+      width: 8px; height: 8px;
+      border-radius: 0;
+      background: var(--red);
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      will-change: transform;
+    }
+    .cursor-dot.is-visible { opacity: 1; }
+
+    .cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 9998;
+      pointer-events: none;
+      width: 30px; height: 30px;
+      border-radius: 0;
+      border: 1.5px solid rgba(255,45,32,0.5);
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      will-change: transform;
+    }
+    .cursor-ring.is-visible { opacity: 1; }
+    .cursor-ring.is-active { border-color: var(--yellow); }
+
+    /* Prevent body scroll when admin is open */
+    body.admin-open { overflow: hidden; }
+
   </style>
 </head>
 <body>
+
+  <!-- Custom cursor elements -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Admin toggle button -->
+  <button class="admin-toggle" id="admin-toggle" aria-label="Open site admin" aria-expanded="false" title="Site Admin">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path>
+    </svg>
+  </button>
+
+  <!-- Admin panel -->
+  <div class="admin-panel" id="admin-panel" role="dialog" aria-modal="true" aria-label="Site Admin" hidden>
+    <div class="admin-backdrop" data-close-admin></div>
+    <div class="admin-shell">
+
+      <div class="admin-header">
+        <span class="admin-header-title">RAY <span class="red">✦</span> CANDELA — Admin</span>
+        <button class="admin-close" id="admin-close" aria-label="Close admin panel">✕</button>
+      </div>
+
+      <!-- Login screen -->
+      <div class="admin-lock" id="admin-lock">
+        <div class="admin-lock-icon">🔒</div>
+        <h3>Admin Access</h3>
+        <div id="admin-status" class="admin-status" role="status"></div>
+        <form id="admin-login-form">
+          <input class="admin-field" type="password" id="admin-password" name="password" placeholder="Enter password" autocomplete="current-password" required>
+          <button type="submit" class="btn btn-red" style="width:100%;">Unlock →</button>
+        </form>
+      </div>
+
+      <!-- Admin content (hidden until unlocked) -->
+      <div id="admin-content" hidden>
+        <div class="admin-body">
+
+          <!-- Gallery section -->
+          <div class="admin-section">
+            <div class="admin-section-title">Gallery · <span id="admin-gallery-count"></span></div>
+
+            <form class="admin-form" id="admin-gallery-url-form">
+              <div>
+                <label class="admin-form-label" for="admin-image-url">Add image by URL</label>
+                <input class="admin-field" type="url" id="admin-image-url" name="imageUrl" placeholder="https://example.com/photo.jpg">
+                <p class="admin-form-hint">Must be a direct image URL (HTTPS).</p>
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-image-alt">Alt text / caption</label>
+                <input class="admin-field" type="text" id="admin-image-alt" name="imageAlt" placeholder="Ray Candela at Tresor Berlin">
+              </div>
+              <button type="submit" class="btn btn-outline" style="align-self:flex-start; font-size:0.78rem;">Add Image</button>
+            </form>
+
+            <form class="admin-form" id="admin-gallery-upload-form">
+              <div>
+                <label class="admin-form-label" for="admin-image-files">Upload photos from device</label>
+                <input class="admin-field" type="file" id="admin-image-files" name="imageFiles" accept="image/*" multiple>
+                <p class="admin-form-hint">Saved in this browser only (localStorage).</p>
+              </div>
+              <button type="submit" class="btn btn-outline" style="align-self:flex-start; font-size:0.78rem;">Upload</button>
+            </form>
+
+            <div class="admin-items" id="admin-gallery-list"></div>
+          </div>
+
+          <!-- Music section -->
+          <div class="admin-section">
+            <div class="admin-section-title">Música · Platform Links</div>
+            <form class="admin-form" id="admin-music-form">
+              <div>
+                <label class="admin-form-label" for="admin-spotify">Spotify URL</label>
+                <input class="admin-field" type="url" id="admin-spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-soundcloud">SoundCloud URL</label>
+                <input class="admin-field" type="url" id="admin-soundcloud" name="soundcloud" placeholder="https://soundcloud.com/raycandela">
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-youtube">YouTube URL</label>
+                <input class="admin-field" type="url" id="admin-youtube" name="youtube" placeholder="https://youtube.com/@raycandela">
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-apple">Apple Music URL</label>
+                <input class="admin-field" type="url" id="admin-apple" name="apple" placeholder="https://music.apple.com/...">
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-embed">Embed (paste Spotify/YouTube/SoundCloud URL or full iframe)</label>
+                <textarea class="admin-field" id="admin-embed" name="embed" placeholder="https://open.spotify.com/album/..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-outline" style="align-self:flex-start; font-size:0.78rem;">Save Music Links</button>
+            </form>
+          </div>
+
+          <!-- Shows section -->
+          <div class="admin-section">
+            <div class="admin-section-title">Conciertos</div>
+            <form class="admin-form" id="admin-shows-form">
+              <div class="admin-form-row">
+                <div>
+                  <label class="admin-form-label" for="admin-show-date">Date</label>
+                  <input class="admin-field" type="date" id="admin-show-date" name="showDate" required>
+                </div>
+                <div>
+                  <label class="admin-form-label" for="admin-show-time">Time (optional)</label>
+                  <input class="admin-field" type="text" id="admin-show-time" name="showTime" placeholder="21:00">
+                </div>
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-show-venue">Venue *</label>
+                <input class="admin-field" type="text" id="admin-show-venue" name="showVenue" placeholder="Kantine am Berghain" required>
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-show-city">City *</label>
+                <input class="admin-field" type="text" id="admin-show-city" name="showCity" placeholder="Berlin, Germany" required>
+              </div>
+              <div>
+                <label class="admin-form-label" for="admin-show-ticket">Ticket URL (optional)</label>
+                <input class="admin-field" type="url" id="admin-show-ticket" name="showTicket" placeholder="https://tickets.com/...">
+              </div>
+              <button type="submit" class="btn btn-red" style="align-self:flex-start; font-size:0.78rem;">Add Show</button>
+            </form>
+            <div class="admin-items" id="admin-shows-list"></div>
+          </div>
+
+          <!-- Socials section -->
+          <div class="admin-section">
+            <div class="admin-section-title">Social Links</div>
+            <form class="admin-form" id="admin-socials-form">
+              <div class="admin-form-row">
+                <div>
+                  <label class="admin-form-label" for="admin-ig-url">Instagram URL</label>
+                  <input class="admin-field" type="url" id="admin-ig-url" name="instagramUrl" placeholder="https://instagram.com/raycandela">
+                </div>
+                <div>
+                  <label class="admin-form-label" for="admin-ig-handle">Handle display</label>
+                  <input class="admin-field" type="text" id="admin-ig-handle" name="instagramHandle" placeholder="@raycandela">
+                </div>
+              </div>
+              <div class="admin-form-row">
+                <div>
+                  <label class="admin-form-label" for="admin-fb-url">Facebook URL</label>
+                  <input class="admin-field" type="url" id="admin-fb-url" name="facebookUrl" placeholder="https://facebook.com/raycandela">
+                </div>
+                <div>
+                  <label class="admin-form-label" for="admin-fb-handle">Handle display</label>
+                  <input class="admin-field" type="text" id="admin-fb-handle" name="facebookHandle" placeholder="Ray Candela">
+                </div>
+              </div>
+              <div class="admin-form-row">
+                <div>
+                  <label class="admin-form-label" for="admin-tt-url">TikTok URL</label>
+                  <input class="admin-field" type="url" id="admin-tt-url" name="tiktokUrl" placeholder="https://tiktok.com/@raycandela">
+                </div>
+                <div>
+                  <label class="admin-form-label" for="admin-tt-handle">Handle display</label>
+                  <input class="admin-field" type="text" id="admin-tt-handle" name="tiktokHandle" placeholder="@raycandela">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-outline" style="align-self:flex-start; font-size:0.78rem;">Save Socials</button>
+            </form>
+          </div>
+
+        </div><!-- /admin-body -->
+
+        <div class="admin-footer">
+          <div style="display:flex; gap:0.75rem; margin-left:auto;">
+            <button class="btn btn-outline" style="font-size:0.72rem; padding:0.5rem 1rem;" id="admin-reset">Reset to Default</button>
+            <button class="btn btn-outline" style="font-size:0.72rem; padding:0.5rem 1rem;" id="admin-lock-button">Lock</button>
+          </div>
+        </div>
+      </div><!-- /admin-content -->
+
+    </div><!-- /admin-shell -->
+  </div><!-- /admin-panel -->
 
   <!-- ══════════════════════════════
        NAV
@@ -1230,31 +1791,11 @@
         </div>
 
         <div class="fi fi-d2">
-          <div class="platform-links">
-            <a href="#" class="platform-link soon">
-              <span>Spotify</span>
-              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
-            </a>
-            <a href="#" class="platform-link soon">
-              <span>SoundCloud</span>
-              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
-            </a>
-            <a href="#" class="platform-link soon">
-              <span>YouTube</span>
-              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
-            </a>
-            <a href="#" class="platform-link soon">
-              <span>Apple Music</span>
-              <span class="arrow" style="font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.5;">Soon</span>
-            </a>
+          <div class="platform-links" id="music-platforms">
+            <!-- Rendered by site.js -->
           </div>
-
-          <div class="music-placeholder">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="opacity:0.2;">
-              <circle cx="12" cy="12" r="10" stroke="#F7F0E8" stroke-width="1.5"/>
-              <polygon points="10,8 16,12 10,16" fill="#F7F0E8" opacity="0.6"/>
-            </svg>
-            <p>Music embed coming soon</p>
+          <div id="music-embed-shell">
+            <!-- Rendered by site.js -->
           </div>
         </div>
 
@@ -1279,33 +1820,8 @@
         <a href="#contact" class="btn btn-outline btn-pill fi" style="align-self:flex-end;">Invite Us To Play →</a>
       </div>
 
-      <div class="shows-list" style="margin-top: var(--space-8);">
-
-        <!-- ──────────────────────────────────────────
-             UNCOMMENT & FILL when you have dates:
-
-        <div class="show-item fi">
-          <div>
-            <div class="show-num">14</div>
-            <div class="show-month">Jun 2025</div>
-          </div>
-          <div>
-            <div class="show-venue">Kantine Am Berghain</div>
-            <div class="show-city">Berlin, Germany · 21:00</div>
-          </div>
-          <a href="#" class="btn btn-outline btn-pill show-ticket" style="font-size:0.75rem;">Tickets →</a>
-        </div>
-        ────────────────────────────────────────── -->
-
-        <div class="no-shows fi">
-          <p style="color: var(--muted); font-size:0.85rem; letter-spacing:0.05em;">
-            No shows announced yet. Follow us on Instagram for updates.
-          </p>
-          <a href="#contact" class="btn btn-red btn-pill" style="margin-top: var(--space-6); font-size:0.82rem;">
-            Booking Enquiries →
-          </a>
-        </div>
-
+      <div class="shows-board" id="shows-board">
+        <!-- Rendered by site.js -->
       </div>
     </div>
   </section>
@@ -1346,30 +1862,12 @@
       </div>
     </div>
 
-    <!-- Drag-to-scroll strip -->
-    <!-- Replace placeholder divs with <img src="pictures/your-photo.jpg" alt="..."> -->
-    <div class="gallery-strip" id="gallery-strip" role="region" aria-label="Photo gallery" tabindex="0">
-
-      <div class="gallery-item" data-n="01" style="margin-left: clamp(1.5rem, 6vw, 6rem);">
-        <img src="pictures/gallery-01.jpg" alt="Ray Candela portrait in Berlin" loading="lazy">
-      </div>
-
-      <div class="gallery-item wide" data-n="02">
-        <img src="pictures/gallery-04.jpg" alt="Ray Candela trombone player portrait" loading="lazy">
-      </div>
-
-      <div class="gallery-item" data-n="03">
-        <img src="pictures/gallery-02.jpg" alt="Ray Candela percussion portrait" loading="lazy">
-      </div>
-
-      <div class="gallery-item wide" data-n="04">
-        <img src="pictures/gallery-05.jpg" alt="Ray Candela full band group portrait" loading="lazy">
-      </div>
-
-      <div class="gallery-item" data-n="05" style="margin-right: clamp(1.5rem, 6vw, 6rem);">
-        <img src="pictures/gallery-03.jpg" alt="Ray Candela bass player portrait" loading="lazy">
-      </div>
-
+    <!-- Drag-to-scroll strip powered by site.js -->
+    <div class="gallery-grid" id="gallery-grid" role="region" aria-label="Photo gallery" tabindex="0">
+      <!-- Rendered by site.js renderGallery() -->
+    </div>
+    <div style="text-align:center; margin-top:var(--space-4);">
+      <span id="gallery-count" style="font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--border-light);"></span>
     </div>
   </section>
 
@@ -1397,7 +1895,6 @@
 
           <form
             style="margin-top: var(--space-8);"
-            onsubmit="handleSubmit(event)"
             id="booking-form"
             aria-label="Booking enquiry form"
           >
@@ -1488,19 +1985,9 @@
           <!-- Socials -->
           <div class="social-block">
             <p class="social-label">Find Us Online</p>
-            <!-- Replace href="#" with real social links -->
-            <a href="#" class="social-row" aria-label="Instagram">
-              <span class="platform-name">Instagram</span>
-              <span class="handle">@raycandela →</span>
-            </a>
-            <a href="#" class="social-row" aria-label="Facebook">
-              <span class="platform-name">Facebook</span>
-              <span class="handle">Ray Candela →</span>
-            </a>
-            <a href="#" class="social-row" aria-label="TikTok">
-              <span class="platform-name">TikTok</span>
-              <span class="handle">@raycandela →</span>
-            </a>
+            <div id="social-links">
+              <!-- Rendered by site.js renderSocials() -->
+            </div>
           </div>
 
         </div>
@@ -1545,83 +2032,32 @@
        JAVASCRIPT
   ══════════════════════════════ -->
   <script>
-    /* ── Smooth scroll ── */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    /* ── Drag gallery grid ── */
+    function initGalleryDrag(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let isDown = false, startX, scrollLeft;
+      el.addEventListener('mousedown', e => {
+        isDown = true; el.classList.add('grabbing');
+        startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
       });
-    });
-
-    /* ── Fade-in on scroll ── */
-    const fiEls = document.querySelectorAll('.fi');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          io.unobserve(entry.target);
-        }
+      el.addEventListener('mouseleave', () => { isDown = false; el.classList.remove('grabbing'); });
+      el.addEventListener('mouseup',    () => { isDown = false; el.classList.remove('grabbing'); });
+      el.addEventListener('mousemove', e => {
+        if (!isDown) return; e.preventDefault();
+        el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX) * 1.5;
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-    fiEls.forEach(el => io.observe(el));
-
-    /* Fire hero elements immediately on load */
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.hero .fi').forEach((el, i) => {
-        setTimeout(() => el.classList.add('show'), i * 130);
+      let tStart = 0, tScroll = 0;
+      el.addEventListener('touchstart', e => { tStart = e.touches[0].pageX; tScroll = el.scrollLeft; }, { passive: true });
+      el.addEventListener('touchmove',  e => { el.scrollLeft = tScroll - (e.touches[0].pageX - tStart); }, { passive: true });
+      el.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') el.scrollBy({ left: 300, behavior: 'smooth' });
+        if (e.key === 'ArrowLeft')  el.scrollBy({ left: -300, behavior: 'smooth' });
       });
-    });
-
-    /* ── Drag gallery ── */
-    const strip = document.getElementById('gallery-strip');
-    let isDown = false, startX, scrollLeft;
-    strip.addEventListener('mousedown', e => {
-      isDown = true;
-      strip.classList.add('grabbing');
-      startX = e.pageX - strip.offsetLeft;
-      scrollLeft = strip.scrollLeft;
-    });
-    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('grabbing'); });
-    strip.addEventListener('mouseup',    () => { isDown = false; strip.classList.remove('grabbing'); });
-    strip.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX) * 1.5;
-    });
-    let tStart = 0, tScroll = 0;
-    strip.addEventListener('touchstart', e => {
-      tStart = e.touches[0].pageX;
-      tScroll = strip.scrollLeft;
-    }, { passive: true });
-    strip.addEventListener('touchmove', e => {
-      strip.scrollLeft = tScroll - (e.touches[0].pageX - tStart);
-    }, { passive: true });
-    strip.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') strip.scrollBy({ left: 300, behavior: 'smooth' });
-      if (e.key === 'ArrowLeft')  strip.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-
-    /* ── Form ── */
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = document.getElementById('booking-form');
-      const btn  = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      /*
-        For real emails, change form to:
-          <form action="https://formspree.io/f/YOUR_ID" method="POST">
-        or add data-netlify="true" for Netlify Forms.
-      */
-      setTimeout(() => {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }, 900);
     }
+    document.addEventListener('DOMContentLoaded', () => initGalleryDrag('gallery-grid'));
   </script>
+  <script src="site.js"></script>
 
 </body>
 </html>
